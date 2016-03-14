@@ -33,5 +33,5 @@ Use the client in example-cpuusage-api/client/generator.py to send requests to A
 
 ## Twitter Finatra Web admin
 
-!(admin)[http://i.imgur.com/2LmNVss.png]
+![admin](http://i.imgur.com/2LmNVss.png)
 
