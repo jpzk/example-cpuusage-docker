@@ -2,14 +2,8 @@
 
 Requirements:Linux host with git and docker
 
-The solution is based on two components running on the same machine (can be distributed with small effort). The following works on a DigitalOcean instance: 8GB, 4CPU 80GB 5TB.
-
-* https://github.com/jpzk/example-cpuusage-docker
-* https://github.com/jpzk/example-cpuusage-api
-* https://github.com/jpzk/example-cpuusage-spark
-
-* For the API endpoint Finatra is used.
-* For aggregating the raw data hourly Spark is employed.
+The solution is based on two components running on the same machine (can be distributed with small effort) ([api](https://github.com/jpzk/example-cpuusage-api) and a [Spark driver](https://github.com/jpzk/example-cpuusage-spark)
+. The following works on a DigitalOcean instance: 8GB, 4CPU 80GB 5TB. For the API endpoint Finatra is used. For aggregating the raw data hourly Spark is employed.
 
 ## Installation
 
@@ -24,7 +18,9 @@ The solution is based on two components running on the same machine (can be dist
 The API endpoint is served on container port 8888 and on the host system it is 80.
 The API endpoint is served on container port 9990 and on the host system it is 81.
 
-INFO: The API endpoint service writes CSV files to /var/data/. The hourly cron job executing (can also use an external Spark cluster, if the CSV data is stored in HDFS by the api): /opt/spark/bin/spark-submit --master local --deploy-mode client --class Main /example-cpuusage-spark/target/scala-2.10/cpuapi-spark.jar. The spark driver program writes the JSON output to /var/data/agg.
+## Under the hood
+
+The API endpoint service writes CSV files to /var/data/. The hourly cron job executing (can also use an external Spark cluster, if the CSV data is stored in HDFS by the api): /opt/spark/bin/spark-submit --master local --deploy-mode client --class Main /example-cpuusage-spark/target/scala-2.10/cpuapi-spark.jar. The spark driver program writes the JSON output to /var/data/agg.
 
 ## Usage
 
