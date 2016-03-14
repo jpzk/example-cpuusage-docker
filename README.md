@@ -2,8 +2,7 @@
 
 Requirements:Linux host with git and docker
 
-The solution is based on two components running on the same machine (can be distributed with small effort) ([api](https://github.com/jpzk/example-cpuusage-api) and a [Spark driver](https://github.com/jpzk/example-cpuusage-spark)
-. The following works on a DigitalOcean instance: 8GB, 4CPU 80GB 5TB. For the API endpoint Finatra is used. For aggregating the raw data hourly Spark is employed.
+The solution is based on two components running on the same machine (can be distributed with small effort) ([Webservice in Finatra](https://github.com/jpzk/example-cpuusage-api) and a [Spark driver](https://github.com/jpzk/example-cpuusage-spark) which is running in client mode. The driver aggregates the previous hour, and writes the results into the file system (for a distributed approach of Spark, the CSV files need to be written to HDFS). The following setup works on a [DigitalOcean](http://www.digitalocean.com) instance: 8GB, 4CPU, 80GB, 5TB. 
 
 ## Installation
 
