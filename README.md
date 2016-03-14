@@ -13,11 +13,11 @@ https://github.com/jpzk/example-cpuusage-spark
 
 ## Installation
 
-git clone https://github.com/jpzk/example-cpuusage-docker
-cd example-cpuusage-docker
+  git clone https://github.com/jpzk/example-cpuusage-docker
+  cd example-cpuusage-docker
 
-docker build -t cpuusage .
-docker run -i --name cpuusagec -p 80:8888 -p 81:9990 -t cpuusage "/bin/bash"
+  docker build -t cpuusage .
+  docker run -i --name cpuusagec -p 80:8888 -p 81:9990 -t cpuusage "/bin/bash"
 
 The API endpoint is served on container port 8888 and on the host system it is 80.
 The API endpoint is served on container port 9990 and on the host system it is 81.
@@ -27,7 +27,7 @@ INFO: The API endpoint service writes CSV files to /var/data/. The hourly cron j
 ## Usage
 
 Now we only need to start the finatra service by
-java -jar /example-cpuusage-api/cpuapi-api.jar &
+  java -jar /example-cpuusage-api/cpuapi-api.jar &
 
 Use the client in example-cpuusage-api/client/generator.py to send requests to API which runs on port 80.
 
