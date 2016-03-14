@@ -28,15 +28,18 @@ ENV PATH $PATH:/opt/spark/bin
 RUN git clone https://github.com/jpzk/example-cpuusage-spark.git
 WORKDIR example-cpuusage-spark
 RUN sbt assembly
-RUN echo "* */1  * * *   root    /opt/spark/bin/spark-submit --class Main /example-cpuusage-spark/target/scala-2.10/cpuusage-spark.jar" > /etc/crontab
+RUN echo "* */1  * * *   root    /opt/spark/bin/spark-submit --deploy-mode client --master local --class Main /example-cpuusage-spark/target/scala-2.10/cpuapi-spark.jar" > /etc/crontab
 
 RUN crontab /etc/crontab
 RUN crontab -l
 WORKDIR /
 RUN git clone https://github.com/jpzk/example-cpuusage-api.git
+WORKDIR /example-cpuusage-api
+RUN sbt assembly
+RUN mv /example-cpuusage-api/target/scala-2.10/cpuapi-api.jar .
+
+EXPOSE 9990
 EXPOSE 8888
 
-WORKDIR /example-cpuusage-api 
-RUN echo "cd /example-cpuusage-api; sbt run &" > /start.sh
-RUN chmod +x /start.sh
-ENTRYPOINT /start.sh
+WORKDIR /
+
