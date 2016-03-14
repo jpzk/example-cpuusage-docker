@@ -1,8 +1,8 @@
 # README
 
-Requirements:Linux host with git and docker
+Requirements: Linux host with git and docker
 
-The solution is based on two components running on the same machine (can be distributed with small effort) ([Webservice in Finatra](https://github.com/jpzk/example-cpuusage-api) and a [Spark driver](https://github.com/jpzk/example-cpuusage-spark) which is running in client mode. The driver aggregates the previous hour, and writes the results into the file system (for a distributed approach of Spark, the CSV files need to be written to HDFS). The following setup works on a [DigitalOcean](http://www.digitalocean.com) instance: 8GB, 4CPU, 80GB, 5TB. 
+The solution is based on two components running in the same Ubuntu 14.04 container (can be distributed with small effort) ([Webservice in Finatra](https://github.com/jpzk/example-cpuusage-api) and a [Spark driver](https://github.com/jpzk/example-cpuusage-spark) which is running in client mode. The driver aggregates the previous hour, and writes the results into the file system (for a distributed approach of Spark, the CSV files need to be written to HDFS). The following setup works on a [DigitalOcean](http://www.digitalocean.com) instance: 8GB, 4CPU, 80GB, 5TB. 
 
 ## Installation
 
@@ -31,4 +31,7 @@ java -jar /example-cpuusage-api/cpuapi-api.jar &
 
 Use the client in example-cpuusage-api/client/generator.py to send requests to API which runs on port 80.
 
+## Twitter Finatra Web admin
+
+[[http://i.imgur.com/2LmNVss.png|alt=admin]]
 
